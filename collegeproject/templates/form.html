@@ -1,0 +1,24 @@
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url 'collegeapp:confirm' %}"><button type="submit">Submit</button>
+        <button>Logout</button>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#id_department').change(function() {
+        var departmentId = $(this).val();
+        $.ajax({
+            url: '{% url "collegeapp:get_courses" %}',
+            data: {
+                'department_id': departmentId
+            },
+            success: function(data) {
+                $('#id_course').html(data);
+            }
+        });
+    });
+});
+</script>

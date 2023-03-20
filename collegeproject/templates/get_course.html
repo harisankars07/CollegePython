@@ -1,0 +1,5 @@
+{% for course in courses %}
+<option value="{{ course.id }}">{{ course.name }}</option>
+{% empty %}
+<option>No courses found</option>
+{% endfor %}
