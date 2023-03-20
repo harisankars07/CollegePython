@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect
 from .models import Department,Course
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .forms import EnquiryForm
+from django.contrib import messages
 
 
 def home(request):
