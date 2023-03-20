@@ -3,7 +3,7 @@ from .models import Department,Course
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .forms import EnquiryForm
-from django.http import JsonResponse
+
 
 def home(request):
     departments = Department.objects.all()
@@ -28,18 +28,21 @@ def register(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
-        if password != confirm_password:
+        if not all([username, password, confirm_password]):
+            messages.info(request, "Please fill all required fields.")
+            return render(request, 'register.html')
 
-            pass
+        if password == confirm_password:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "USERNAME TAKEN")
+                return redirect('register')
 
-        User.objects.create_user(username=username, password=password)
+        else:
+            messages.info(request, "PASSWORD NOT MATCH")
+            return redirect('register')
         return redirect('/logins')
 
     return render(request, 'register.html')
-
-def new_page(request):
-
-    return render(request, 'new_page.html')
 
 
 def form(request):
