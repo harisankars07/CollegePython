@@ -66,20 +66,3 @@ def get_courses(request):
     courses = Course.objects.filter(department_id=department_id)
     return render(request, 'get_course.html', {'courses': courses})
 
-# def __init__(self, *args, **kwargs):
-#     instance = kwargs.get('instance')
-#     initial = kwargs.get('initial')
-#     if instance:
-#         department_id = instance.department_id
-#         initial['Course'] = instance.course
-#     elif 'department' in initial:
-#         try:
-#             department_id = int(initial.get('department'))
-#         except (ValueError, TypeError):
-#             department_id = None
-#     else:
-#         department_id = None
-#     if department_id:
-#         courses = Course.objects.filter(department_id=department_id)
-#         self.fields['course'].queryset = courses
-#     super().__init__(*args, **kwargs)
