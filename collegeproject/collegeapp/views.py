@@ -45,6 +45,10 @@ def register(request):
 
     return render(request, 'register.html')
 
+def new_page(request):
+
+    return render(request, 'new_page.html')
+
 
 def form(request):
     if request.method == 'POST':
